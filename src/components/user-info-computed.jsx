@@ -26,19 +26,31 @@ export default function UserInfoComputed() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(user);
 
-		setUser({
-			firstName: '',
-			lastName: '',
-			email: '',
-			phone: '',
-			dob: '',
-			gender: '',
-			github: '',
-			residence: '',
-		});
+		fetch('http://localhost:3000/users', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(user),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setUser({
+					firstName: '',
+					lastName: '',
+					email: '',
+					phone: '',
+					dob: '',
+					gender: '',
+					github: '',
+					residence: '',
+				});
+			});
 	};
+
+	// axios
 
 	return (
 		<div className="h-screen flex items-center justify-center">

@@ -16,6 +16,7 @@ export default function UserInfo() {
 		event.preventDefault();
 		console.log(user);
 
+		// clear the form after submission
 		setUser({
 			firstName: '',
 			lastName: '',

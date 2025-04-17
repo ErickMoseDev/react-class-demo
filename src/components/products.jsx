@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Products() {
 	const [products, setProducts] = useState([]);
@@ -17,6 +18,7 @@ export default function Products() {
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
 					{products.map((product) => (
 						<ProductCard
+							id={product.id}
 							title={product.title}
 							image={product.image}
 							description={product.description}
@@ -49,6 +51,7 @@ export default function Products() {
 }
 
 export function ProductCard({
+	id,
 	title,
 	image,
 	description,
@@ -57,40 +60,45 @@ export function ProductCard({
 	rating,
 }) {
 	return (
-		<div className="rounded-lg flex flex-col justify-between gap-3 border overflow-hidden">
-			<img
-				src={image}
-				alt={title}
-				className="w-full h-[300px] object-cover object-top"
-			/>
-			<div className="p-5 flex flex-col gap-3">
-				<h2 className="font-mono text-lg font-bold line-clamp-1">
-					{title}
-				</h2>
-				<div className="bg-orange-500/[0.15] text-orange-500 px-2 rounded-sm w-fit text-font-medium">
-					{category}
+		<Link
+			to={`/playground/products/${id}`}
+			className="rounded-lg flex flex-col justify-between gap-3 border overflow-hidden"
+		>
+			<div>
+				<img
+					src={image}
+					alt={title}
+					className="w-full h-[300px] object-cover object-top"
+				/>
+				<div className="p-5 flex flex-col gap-3">
+					<h2 className="font-mono text-lg font-bold line-clamp-1">
+						{title}
+					</h2>
+					<div className="bg-orange-500/[0.15] text-orange-500 px-2 rounded-sm w-fit text-font-medium">
+						{category}
+					</div>
+					<p className="font-medium text-gray-600 text-xs line-clamp-5">
+						{description}
+					</p>
 				</div>
-				<p className="font-medium text-gray-600 text-xs line-clamp-5">
-					{description}
-				</p>
-			</div>
 
-			{/* price and rating */}
-			<div className="flex justify-between items-center p-5">
-				<h4 className="text-2xl font-bold font-mono">$ {price}</h4>
+				{/* price and rating */}
+				<div className="flex justify-between items-center p-5">
+					<h4 className="text-2xl font-bold font-mono">$ {price}</h4>
 
-				<p
-					className={
-						rating >= 4.0
-							? 'font-mono font-bold text-xl text-green-500'
-							: rating >= 2.5
-							? 'font-mono font-bold text-xl text-orange-400'
-							: 'font-mono font-bold text-xl text-red-500'
-					}
-				>
-					{rating}
-				</p>
+					<p
+						className={
+							rating >= 4.0
+								? 'font-mono font-bold text-xl text-green-500'
+								: rating >= 2.5
+								? 'font-mono font-bold text-xl text-orange-400'
+								: 'font-mono font-bold text-xl text-red-500'
+						}
+					>
+						{rating}
+					</p>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }

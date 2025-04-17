@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "firstName": "Jane",
+      "lastName": "Doe Mong'are",
+      "email": "janedoe@gmail.com",
+      "phone": "0712345678",
+      "dob": "2006-06-16",
+      "gender": "Female",
+      "github": "https://github.com/janedoemongaredev",
+      "residence": "Nairobi city",
+      "id": 1
+    }
+  ]
+}
